@@ -1,59 +1,182 @@
-# Fitmanager
+<div align="center">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+# 💪 BigFit
 
-## Development server
+### Sistema de gerenciamento para academias desenvolvido com Angular.
 
-To start a local development server, run:
+<p>
+
+<img src="https://img.shields.io/badge/Angular-19-DD0031?style=for-the-badge&logo=angular&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-success?style=for-the-badge"/>
+
+<img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge"/>
+
+</p>
+
+Sistema desenvolvido para gerenciamento de academias, permitindo o controle de alunos, treinos, planos e informações do usuário em uma interface moderna e intuitiva.
+
+</div>
+
+---
+
+# 📖 Sobre
+
+O **BigFit** é uma aplicação web desenvolvida utilizando **Angular 19**, criada para simular um sistema completo de gerenciamento de academias.
+
+A aplicação possui autenticação de usuários, áreas distintas para administradores e alunos, gerenciamento de planos, treinos e informações cadastrais, oferecendo uma experiência organizada e responsiva.
+
+O projeto foi desenvolvido com foco no aprendizado de boas práticas de desenvolvimento Front-end utilizando Angular.
+
+---
+
+# 🚀 Funcionalidades
+
+## 🔐 Autenticação
+
+- Login
+- Controle de acesso
+- Proteção de rotas
+- Logout
+
+---
+
+## 👨‍💼 Área Administrativa
+
+- Dashboard
+- Cadastro de alunos
+- Gerenciamento de treinos
+- Gerenciamento de planos
+- Controle dos usuários
+
+---
+
+## 👨‍🎓 Área do Aluno
+
+- Meu Perfil
+- Visualização dos dados
+- Consulta do plano
+- Consulta do treino
+
+---
+
+# 🛠 Tecnologias
+
+- Angular 19
+- TypeScript
+- HTML5
+- CSS3
+- Angular Router
+- Angular Forms
+- Animate.css
+- Git
+- GitHub
+
+---
+
+# 📂 Estrutura
+
+```text
+src
+│
+├── app
+│
+├── core
+│   └── guards
+│
+├── models
+│   ├── aluno
+│   ├── treino
+│   ├── plano
+│   ├── pagamento
+│   └── usuario
+│
+├── pages
+│   │
+│   ├── auth
+│   │     └── login
+│   │
+│   ├── admin
+│   │     ├── dashboard
+│   │     ├── alunos
+│   │     ├── planos
+│   │     └── treinos
+│   │
+│   └── student
+│         └── meu-perfil
+│
+└── services
+```
+
+---
+# 🧠 Conceitos Aplicados
+
+- Componentização
+- Angular Router
+- Auth Guard
+- Organização em camadas
+- Models
+- Services
+- Responsividade
+- TypeScript
+- SPA (Single Page Application)
+
+---
+
+# ⚙️ Como executar
+
+Clone o projeto
+
+```bash
+git clone https://github.com/brenocerqueira-dev/BigFit.git
+```
+
+Entre na pasta
+
+```bash
+cd BigFit
+```
+
+Instale as dependências
+
+```bash
+npm install
+```
+
+Execute
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abra
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+# 📚 Aprendizados
 
-## Building
+Durante o desenvolvimento deste projeto foram aplicados diversos conceitos importantes do Angular, incluindo autenticação, organização da arquitetura, proteção de rotas, componentização e desenvolvimento de interfaces responsivas.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+# 👨‍💻 Desenvolvedor
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Breno Alexandre de Medeiros Cerqueira
 
-## Running unit tests
+GitHub
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+https://github.com/brenocerqueira-dev
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+<div align="center">
 
-For end-to-end (e2e) testing, run:
+⭐ Se este projeto foi útil ou interessante para você, deixe uma estrela no repositório!
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+</div>

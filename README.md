@@ -10,7 +10,7 @@
 
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
 
-<img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-success?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Status-Concluído-success?style=for-the-badge"/>
 
 <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge"/>
 

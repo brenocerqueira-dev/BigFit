@@ -1,0 +1,86 @@
+<nav class="top-nav">
+  <button class="btn-menu" (click)="abrirOuFecharMenu()">
+    <img src="cardapio.png" alt="Menu">
+  </button>
+
+  <button class="logout" (click)="logout()" title="Sair do Sistema">
+    <img src="logout.png" alt="Sair">
+  </button>
+</nav>
+
+<div class="menu-lateral" [class.aberto]="menuEstaAberto">
+  <div class="menu-header">
+    <h2>Menu</h2>
+    <button class="btn-fechar" (click)="abrirOuFecharMenu()">✕</button>
+  </div>
+
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/student/meu-treino" (click)="abrirOuFecharMenu()">Início</a>
+    </li>
+    <li>
+      <a routerLink="/student/meu-perfil" (click)="abrirOuFecharMenu()">Meu Perfil</a>
+    </li>
+  </ul>
+</div>
+
+<div class="student-container">
+  <header class="page-header">
+    <h1>Meu Perfil</h1>
+    <p class="subtitle">Seus dados e metas centralizados</p>
+  </header>
+
+  <section class="perfil-card glass-card" *ngIf="alunoLogado">
+
+    <div class="card-header">
+      <h2>Seus Dados</h2>
+      <button class="btn-editar" *ngIf="!modoEdicao" (click)="iniciarEdicao()">Editar</button>
+    </div>
+
+    <div class="info-group">
+      <span class="label">Nome Completo:</span>
+      <span class="value">{{ alunoLogado.nome }}</span>
+    </div>
+
+    <div class="info-group">
+      <span class="label">E-mail (Login):</span>
+      <span class="value">{{ alunoLogado.email }}</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <span class="label">Peso</span>
+        <span class="value highlight" *ngIf="!modoEdicao">{{ alunoLogado.peso || '--' }} kg</span>
+        <div class="input-group" *ngIf="modoEdicao">
+          <input type="number" class="edit-input" [(ngModel)]="pesoEdit">
+          <span class="unit">kg</span>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <span class="label">Altura</span>
+        <span class="value highlight" *ngIf="!modoEdicao">{{ alunoLogado.altura ? (alunoLogado.altura | number:'1.2-2')
+          : '--' }} m</span>
+        <div class="input-group" *ngIf="modoEdicao">
+          <input type="number" step="0.01" class="edit-input" [(ngModel)]="alturaEdit">
+          <span class="unit">m</span>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <span class="label">IMC</span>
+        <span class="value highlight">{{ imcResult }}</span>
+      </div>
+    </div>
+
+    <div class="edit-actions" *ngIf="modoEdicao">
+      <button class="btn-cancelar" (click)="cancelarEdicao()">Cancelar</button>
+      <button class="btn-salvar" (click)="salvarMetricas()">Salvar Alterações ✓</button>
+    </div>
+
+    <div class="info-group meta-group">
+      <span class="label">Objetivo / Meta:</span>
+      <span class="value">{{ alunoLogado.meta || 'Nenhuma meta definida pelo professor.' }}</span>
+    </div>
+  </section>
+</div>

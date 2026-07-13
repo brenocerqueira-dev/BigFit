@@ -1,0 +1,240 @@
+<div class="landing-wrapper">
+  <nav class="navbar" [class.scrolled]="isScrolled">
+    <div class="brand-group">
+      <div class="brand-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#080a08" stroke="none">
+          <path
+            d="M11 21.78a.75.75 0 0 1-1.22-.56l-.28-9.22H5a.75.75 0 0 1-.58-1.22l8-10A.75.75 0 0 1 13 1.34l.28 9.16H19a.75.75 0 0 1 .59 1.21l-8 10a.75.75 0 0 1-.59.07Z" />
+        </svg>
+      </div>
+      <span class="brand-name">BigFit</span>
+    </div>
+    <button class="nav-login-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Entrar</button>
+  </nav>
+
+  <section class="login-section">
+    <div class="background-wrapper">
+      <img
+        src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        alt="Academia moderna e equipamentos" class="bg-image" />
+      <div class="gradient-overlay-1"></div>
+      <div class="gradient-overlay-2"></div>
+    </div>
+
+    <div class="accent-line line-left"></div>
+    <div class="accent-line line-right"></div>
+
+    <div class="content-wrapper">
+      <div class="header-section">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#080a08"
+              stroke="none">
+              <path
+                d="M11 21.78a.75.75 0 0 1-1.22-.56l-.28-9.22H5a.75.75 0 0 1-.58-1.22l8-10A.75.75 0 0 1 13 1.34l.28 9.16H19a.75.75 0 0 1 .59 1.21l-8 10a.75.75 0 0 1-.59.07Z" />
+            </svg>
+          </div>
+          <span class="brand-name">BigFit</span>
+        </div>
+        <h1 class="main-title">
+          SEJA BEM-<br />
+          <span class="highlight">VINDO</span>
+        </h1>
+        <p class="subtitle">Acesse sua conta e continue evoluindo.</p>
+      </div>
+
+      <div class="glass-panel">
+        <div *ngIf="errorMessage" class="error-banner">
+          {{ errorMessage }}
+        </div>
+
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email" placeholder="seu@email.com"
+              [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" />
+            <small class="error-text"
+              *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+              O e-mail é obrigatório.
+            </small>
+            <small class="error-text"
+              *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
+              Digite um e-mail válido.
+            </small>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="password">Senha</label>
+              <button type="button" class="btn-link">Esqueceu a senha?</button>
+            </div>
+            <div class="input-wrapper">
+              <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="senha"
+                placeholder="••••••••"
+                [class.is-invalid]="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched" />
+              <button type="button" class="toggle-password" (click)="togglePassword()" aria-label="Mostrar senha">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <small class="error-text"
+              *ngIf="loginForm.get('senha')?.hasError('required') && loginForm.get('senha')?.touched">
+              A senha é obrigatória.
+            </small>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label" for="lgpdCheckbox">
+              <input type="checkbox" id="lgpdCheckbox" formControlName="lgpd" />
+              <span class="checkbox-text">
+                Li e aceito os
+                <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm"
+                  target="_blank" class="lgpd-link">termos e condições</a>
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary" [disabled]="isLoading || loginForm.invalid">
+            {{ isLoading ? 'ENTRANDO...' : 'ENTRAR' }}
+          </button>
+        </form>
+      </div>
+      <div class="scroll-indicator">↓ Role para descobrir mais ↓</div>
+    </div>
+  </section>
+
+  <section class="hero-section esconder-antes-do-scroll">
+    <div class="hero-background">
+      <img
+        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
+        alt="Treino intenso" class="hero-img" />
+      <div class="hero-overlay-1"></div>
+      <div class="hero-overlay-2"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="badge">O Futuro do seu Treino</div>
+      <h1 class="hero-title">
+        NÃO TREINE FOFINHO.<br />
+        TREINE <span class="highlight">BIGFIT.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Tenha a acesso aos melhores treinos, acompanhamento de evolução e dicas de especialistas em um só lugar.
+        Transforme seu corpo e sua vida com o BigFit.
+      </p>
+    </div>
+  </section>
+
+  <section class="features-section esconder-antes-do-scroll">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">
+          Tudo que você precisa<br />
+          <span class="title-muted">em um só lugar</span>
+        </h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#c8ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" />
+            </svg>
+          </div>
+          <h3>Treinos Inteligentes</h3>
+          <p>Rotinas adaptáveis montadas com base em suas metas.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#c8ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+          </div>
+          <h3>Treinos efetivos</h3>
+          <p>Exercícios comprovados cientificamente para maximizar seus resultados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="carousel-section esconder-antes-do-scroll">
+    <h2 class="section-title">O que dizem os nossos <span>Atletas</span></h2>
+
+    <div class="depoimentos-carousel glass-card">
+      <button class="carousel-btn prev" (click)="anterior()" aria-label="Depoimento Anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="depoimento-content">
+        <div class="quote-icon">“</div>
+        <p class="depoimento-texto">{{ depoimentos[indexAtivo].texto }}</p>
+        <div class="depoimento-footer">
+          <h4 class="depoimento-autor">{{ depoimentos[indexAtivo].nome }}</h4>
+          <span class="depoimento-meta">{{ depoimentos[indexAtivo].meta }}</span>
+        </div>
+      </div>
+
+      <button class="carousel-btn next" (click)="proximo()" aria-label="Próximo Depoimento">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <section class="cta-section esconder-antes-do-scroll">
+    <div class="cta-banner">
+      <div class="cta-glow"></div>
+      <h2 class="cta-title">Pronto para mudar<br />sua rotina?</h2>
+      <p class="cta-subtitle">Junte-se a milhares de atletas que já estão transformando seus corpos com o BigFit.</p>
+    </div>
+  </section>
+
+  <footer class="footer-black">
+    <div class="footer-container">
+      <div class="footer-left">
+        <a href="https://github.com/brenocerqueira-dev" target="_blank" class="social-link" title="Visite meu GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+        </a>
+
+        <a href="https://www.linkedin.com/in/breno-alexandre-909428352/" target="_blank" class="social-link"
+          title="Visite meu LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+        </a>
+
+        <a href="https://www.instagram.com/breno_cerqueira7/" target="_blank" class="social-link"
+          title="Visite meu Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-center">
+        <p>© 2026 BigFit · Todos os direitos reservados</p>
+      </div>
+
+      <div class="footer-right"></div>
+    </div>
+  </footer>
+</div>

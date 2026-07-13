@@ -1,0 +1,89 @@
+<div class="admin-container">
+  <header class="page-header">
+    <h1 class="page-title">Montar Ficha de <span class="highlight">Treino</span></h1>
+
+    <a routerLink="/admin/dashboard" class="btn-voltar" title="Voltar ao Dashboard">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Início</span>
+    </a>
+  </header>
+
+  <section class="glass-card form-section">
+    <h2 class="section-title">Dados do Treino</h2>
+
+    <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()" class="treino-form">
+
+      <div class="form-row">
+        <div class="form-group flex-2">
+          <label>Selecione o Aluno</label>
+          <select formControlName="alunoId">
+            <option value="" disabled selected>Escolha um aluno...</option>
+            <option *ngFor="let aluno of alunos" [value]="aluno.id">
+              {{ aluno.nome }} (Meta: {{ aluno.meta }})
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group flex-3">
+          <label>Título do Treino</label>
+          <input type="text" formControlName="titulo" placeholder="Ex: Treino A - Peito e Tríceps">
+        </div>
+      </div>
+
+      <div class="exercicios-section" formArrayName="exercicios">
+        <div class="section-header">
+          <h3>Lista de Exercícios</h3>
+          <button type="button" class="btn-secondary" (click)="adicionarExercicio()">
+            + Adicionar Exercício
+          </button>
+        </div>
+
+        <div class="exercicio-card" *ngFor="let exercicio of exercicios.controls; let i = index" [formGroupName]="i">
+          <div class="exercicio-header">
+            <h4>Exercício {{ i + 1 }}</h4>
+            <button type="button" class="btn-danger-icon" (click)="removerExercicio(i)" *ngIf="exercicios.length > 1">
+              ✖ Remover
+            </button>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-3">
+              <label>Nome do Exercício</label>
+              <input type="text" formControlName="nome" placeholder="Ex: Supino Reto">
+            </div>
+
+            <div class="form-group flex-1">
+              <label>Séries</label>
+              <input type="number" formControlName="series">
+            </div>
+
+            <div class="form-group flex-1">
+              <label>Repetições</label>
+              <input type="number" formControlName="repeticoes">
+            </div>
+
+            <div class="form-group flex-2">
+              <label>Carga (Opcional)</label>
+              <input type="text" formControlName="cargaRecomendada" placeholder="Ex: 20kg de cada lado">
+            </div>
+
+            <div class="form-group flex-2">
+              <label>Data Programada (Opcional)</label>
+              <input type="date" formControlName="dataExecucao" class="dark-date">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary btn-large" [disabled]="isLoading || exercicios.length === 0">
+          {{ isLoading ? 'Salvando...' : 'Salvar Treino Completo' }}
+        </button>
+      </div>
+    </form>
+  </section>
+</div>

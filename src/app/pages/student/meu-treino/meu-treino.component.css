@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=DM+Sans:wght@400;500;700&display=swap');
+
+
+:host {
+  --bg-color: #080a08;
+  --neon-green: #c8ff00;
+  --neon-green-hover: #bde600;
+  --text-primary: #ffffff;
+  --text-secondary: #99a88c;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  display: block;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+}
+
+
+.student-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-header h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: var(--text-primary);
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background-color: transparent;
+}
+
+.btn-menu,
+.logout {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+.btn-menu img,
+.logout img {
+  width: 30px;
+  height: auto;
+  transition: transform 0.2s ease;
+  filter: invert(1) brightness(2);
+}
+
+.btn-menu:hover img,
+.logout:hover img {
+  transform: scale(1.15);
+}
+
+
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  left: -290px;
+  width: 290px;
+  height: 100vh;
+  background-color: #111411;
+
+  border-right: 1px solid rgba(200, 255, 0, 0.15);
+  z-index: 1050;
+  transition: left 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.menu-lateral.aberto {
+  left: 0;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.menu-header h2 {
+  margin: 0;
+  color: var(--neon-green);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.btn-fechar {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-fechar:hover {
+  color: #ff4757;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 20px 25px;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-bottom: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--neon-green);
+  transform: translateX(5px);
+}
+
+
+.treino-group {
+  margin-bottom: 3.5rem;
+}
+
+.treino-titulo {
+  color: var(--neon-green);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(200, 255, 0, 0.3);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.exercicios-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+
+.exercicio-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--card-border);
+  border-left: 6px solid var(--neon-green);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.exercicio-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200, 255, 0, 0.3);
+}
+
+.ex-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.8rem;
+}
+
+.ex-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.ex-details {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-item .label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+
+.detail-item .value {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+
+.date-badge {
+  background-color: rgba(200, 255, 0, 0.1);
+  color: var(--neon-green);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(200, 255, 0, 0.2);
+}
+
+.card-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--card-border);
+  padding-top: 1.2rem;
+}
+
+.btn-finalizar-ex {
+  background-color: transparent;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-finalizar-ex:hover:not(:disabled) {
+  background-color: var(--neon-green);
+  color: #000000;
+}
+
+
+.exercicio-card.card-concluido {
+  border-left-color: #333333;
+  background: rgba(255, 255, 255, 0.01);
+  opacity: 0.5;
+}
+
+.btn-finalizar-ex:disabled {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+}
+
+
+.student-container p {
+  color: var(--text-secondary);
+}
+
+.student-container h2 {
+  color: var(--text-primary);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

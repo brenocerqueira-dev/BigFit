@@ -1,0 +1,106 @@
+<div class="admin-container">
+
+  <header class="page-header">
+    <h1 class="page-title">Gerenciar <span class="highlight">Planos</span></h1>
+
+    <a routerLink="/admin/dashboard" class="btn-voltar" title="Voltar ao Dashboard">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Início</span>
+    </a>
+  </header>
+
+  <section class="glass-card form-section">
+    <h2 class="section-title">Vincular Plano ao Aluno</h2>
+
+    <form [formGroup]="planoForm" (ngSubmit)="onSubmit()" class="grid-form">
+
+      <div class="form-group">
+        <label>Selecionar Aluno</label>
+        <select formControlName="alunoId">
+          <option value="" disabled selected>Escolha quem vai assinar...</option>
+          <option *ngFor="let aluno of alunos" [value]="aluno.id">
+            {{ aluno.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Qual é o Plano?</label>
+        <select formControlName="tipoPlano">
+          <option value="" disabled selected>Selecione o plano...</option>
+          <option value="DIARIA">Diária (R$ 20,00)</option>
+          <option value="MENSAL">Plano Mensal (R$ 100,00)</option>
+          <option value="TRIMESTRAL">Plano Trimestral (R$ 300,00)</option>
+          <option value="ANUAL">Plano Anual (R$ 1.200,00)</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Observação (Opcional)</label>
+        <input type="text" formControlName="descricao" placeholder="Ex: Pago em dinheiro, início imediato...">
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="planoForm.invalid" class="btn-primary">Vincular Plano</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="glass-card list-section">
+    <h2 class="section-title">Planos e Assinaturas Ativas</h2>
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Plano</th>
+            <th>Valor</th>
+            <th>Duração</th>
+            <th>Início</th>
+            <th>Vencimento</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plano of planos">
+            <td><strong>{{ getNomeAluno(plano.alunoId) }}</strong></td>
+            <td>
+              <span class="badge">{{ plano.nome }}</span>
+            </td>
+            <td>R$ {{ plano.valor | number:'1.2-2' }}</td>
+            <td class="text-muted">
+              {{ plano.duracaoMeses === 0 ? '1 Dia (Diária)' : plano.duracaoMeses + ' Meses' }}
+            </td>
+
+            <td>
+              {{ plano.dataInicio ? (plano.dataInicio | date:'dd/MM/yyyy') : '--' }}
+            </td>
+            <td style="color: var(--neon-green); font-weight: bold;">
+              {{ plano.dataFim ? (plano.dataFim | date:'dd/MM/yyyy') : '--' }}
+            </td>
+
+            <td>
+              <button class="btn-danger" (click)="excluirPlano(plano.id)" title="Cancelar Matrícula">
+                Excluir
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="!planos || planos.length === 0">
+            <td colspan="7">
+              <div class="empty-state">
+                Nenhum plano ou matrícula ativa vinculada ainda.
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>

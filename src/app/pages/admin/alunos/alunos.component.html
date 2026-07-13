@@ -1,0 +1,99 @@
+<div class="admin-container">
+  <header class="page-header">
+    <h1 class="page-title">Gerenciar <span class="highlight">Alunos</span></h1>
+
+    <a routerLink="/admin/dashboard" class="btn-voltar" title="Voltar ao Dashboard">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Início</span>
+    </a>
+  </header>
+
+  <section class="glass-card form-section">
+    <h2 class="section-title">Cadastrar Novo Aluno</h2>
+    <form [formGroup]="alunoForm" (ngSubmit)="onSubmit()" class="grid-form">
+
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" formControlName="nome" placeholder="Ex: Breno Alexandre">
+      </div>
+
+      <div class="form-group">
+        <label>E-mail (Login do Aluno)</label>
+        <input type="email" formControlName="email" placeholder="breno@gmail.com">
+      </div>
+
+      <div class="form-group">
+        <label>Peso (kg)</label>
+        <input type="number" formControlName="peso" placeholder="Ex: 80.5">
+      </div>
+
+      <div class="form-group">
+        <label>Altura (m)</label>
+        <input type="number" step="0.01" formControlName="altura" placeholder="Ex: 1.75">
+      </div>
+
+      <div class="form-group">
+        <label>Objetivo Principal</label>
+        <select formControlName="meta">
+          <option value="" disabled selected>Selecione...</option>
+          <option value="Hipertrofia">Hipertrofia</option>
+          <option value="Emagrecimento">Emagrecimento</option>
+          <option value="Condicionamento">Condicionamento Físico</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="isLoading">
+          {{ isLoading ? 'Salvando...' : 'Cadastrar Aluno' }}
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section class="glass-card list-section">
+    <h2 class="section-title">Alunos Matriculados</h2>
+
+    <div class="loading" *ngIf="isLoading && alunos.length === 0">
+      Carregando dados dos alunos...
+    </div>
+
+    <div class="empty-state" *ngIf="!isLoading && alunos.length === 0">
+      Nenhum aluno cadastrado ainda. O império começa com o primeiro!
+    </div>
+
+    <div class="table-responsive" *ngIf="alunos.length > 0">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Peso</th>
+            <th>Altura</th>
+            <th>IMC</th>
+            <th>Meta</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aluno of alunos">
+            <td><strong>{{ aluno.nome }}</strong></td>
+            <td class="text-muted">{{ aluno.email }}</td>
+            <td>{{ aluno.peso }} kg</td>
+            <td>{{ aluno.altura }} m</td>
+            <td>
+              <span class="badge">{{ aluno.imc }}</span>
+            </td>
+            <td>{{ aluno.meta }}</td>
+            <td>
+              <button class="btn-danger" (click)="deletarAluno(aluno.id)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,78 @@
+<nav class="top-nav">
+  <button class="btn-menu" (click)="abrirOuFecharMenu()">
+    <img src="cardapio.png" alt="Menu">
+  </button>
+
+  <button class="logout" (click)="logout()" title="Sair do Sistema">
+    <img src="logout.png" alt="Sair">
+  </button>
+</nav>
+
+<div class="menu-lateral" [class.aberto]="menuEstaAberto">
+  <div class="menu-header">
+    <h2>Menu</h2>
+    <button class="btn-fechar" (click)="abrirOuFecharMenu()">✕</button>
+  </div>
+
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/student/meu-treino" (click)="abrirOuFecharMenu()">Início</a>
+    </li>
+    <li>
+      <a routerLink="/student/meu-perfil" (click)="abrirOuFecharMenu()">Meu Perfil</a>
+    </li>
+  </ul>
+</div>
+
+<div class="student-container" *ngIf="treinosAtivos.length > 0; else loading">
+  <header class="page-header">
+    <h1>Meus Exercícios Disponíveis</h1>
+    <p class="subtitle">Foco no cronograma e cumpra suas metas!</p>
+  </header>
+
+  <div class="treino-group" *ngFor="let treino of treinosAtivos; let tIndex = index">
+
+    <h2 class="treino-titulo"> {{ treino.titulo }}</h2>
+
+    <div class="exercicios-list">
+
+      <div class="exercicio-card" *ngFor="let exercicio of treino.exercicios; let i = index"
+        [class.card-concluido]="exercicio.concluido">
+
+        <div class="ex-header">
+          <h3>{{ i + 1 }}. {{ exercicio.nome }}</h3>
+
+          <span class="date-badge" *ngIf="exercicio.dataExecucao">
+            {{ exercicio.dataExecucao }}
+          </span>
+        </div>
+
+        <div class="ex-details">
+          <div class="detail-item">
+            <span class="label">Séries x Repetições</span>
+            <span class="value">{{ exercicio.series }} x {{ exercicio.repeticoes }}</span>
+          </div>
+
+          <div class="detail-item" *ngIf="exercicio.carga">
+            <span class="label">Carga</span>
+            <span class="value">{{ exercicio.carga }} kg</span>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button class="btn-finalizar-ex" [disabled]="exercicio.concluido" (click)="finalizarExercicio(tIndex, i)">
+            {{ exercicio.concluido ? 'Concluído ✓' : 'Finalizar Exercício' }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="student-container" style="text-align: center; margin-top: 4rem;">
+    <h2>Buscando seus exercícios...</h2>
+    <p>Se demorar muito, ou se você já terminou tudo, fale com o seu professor!</p>
+  </div>
+</ng-template>

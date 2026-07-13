@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fitmanager": {
+    "BigFit": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/fitmanager",
+            "outputPath": "dist/BigFit",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "fitmanager:build:production"
+              "buildTarget": "BigFit:build:production"
             },
             "development": {
-              "buildTarget": "fitmanager:build:development"
+              "buildTarget": "BigFit:build:development"
             }
           },
           "defaultConfiguration": "development"
